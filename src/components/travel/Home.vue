@@ -79,7 +79,7 @@
     // 引入我的页面
     import My from "./My.vue"
 export default {
-    data() {
+    data: function() {
         return {
             // 默认显示面板
             active:"tab1",
@@ -91,9 +91,11 @@ export default {
             ]
         }
     },
-    props:["uid"],
+    props:["uid","uid1"],
     created(){
-        console.log(this.uid)
+        console.log(this.uid1);
+        if(this.uid1!=null)
+        this.active=this.uid1;
     },
     methods: {
         change(n){

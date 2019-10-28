@@ -20,13 +20,25 @@ import 'vant/lib/index.css';
 import 'vant/lib/picker/style'
 import { DatetimePicker } from 'vant';
 import 'vant/lib/datetime-picker/style'
+import { Panel } from 'vant';
+import { Button } from 'vant';
+import { Cell, CellGroup } from 'vant';
+import { PasswordInput, NumberKeyboard } from 'vant';
+
+Vue.use(PasswordInput).use(NumberKeyboard);
+import { Toast } from 'vant';
+
+Vue.use(Toast);
+// 遮罩层
+import { Overlay } from 'vant';
+Vue.use(Overlay);
 //计步器
 import { Stepper } from 'vant';
 Vue.use(Stepper);
 // npm install --save axios
 import axios from 'axios'
 // 6 配置服务器基础路径
-axios.defaults.baseURL='http://127.0.0.1:5050/';
+axios.defaults.baseURL='https://ztyranxiaomo.applinzi.com/';
 // 7配置保存session信息 为true 保存seesion
 axios.defaults.withCredentials=true
 // 8；axios 注册vue
@@ -37,6 +49,9 @@ Vue.use(MintUI)
 Vue.use(Picker);
 Vue.use(Popup);
 Vue.use(Field);
+Vue.use(Panel);
+Vue.use(Button);
+Vue.use(Cell).use(CellGroup);
 // 时间选择
 Vue.use(DatetimePicker);
 Vue.config.productionTip = false

@@ -2,32 +2,34 @@
 	<div>
 		<div id="orderTop">
 			<mt-header title="我的订单" >
-				<!-- fixed="true" -->
-		  		<router-link to="/MyCart" slot="left">
+		  		<router-link to="/My" slot="left">
 		    	<mt-button icon="back"></mt-button>
 	  		</router-link>
 		</mt-header>
 		</div>
-		<!-- fixed="true" -->
-			<mt-navbar v-model="selected"  >
+			<mt-navbar v-model="selected" >
 				<mt-tab-item id="order">全部订单</mt-tab-item>
 				<mt-tab-item id="pay">待支付</mt-tab-item>
 				<mt-tab-item id="trip">待出行</mt-tab-item>
 				<mt-tab-item id="comment">待评价</mt-tab-item>
 			</mt-navbar>
 		<mt-tab-container v-model="selected">
-	  		 <mt-tab-container-item id="order" @click="getVal(id)">
-	  			<orderlist v-for="n in 2" :key="n" ></orderlist>
+	  		<mt-tab-container-item id="order" @click="getVal(id)">
+				  111
+	  			<!-- <orderlist v-for="n in 2" ></orderlist> -->
 	  		</mt-tab-container-item>
 	  		<mt-tab-container-item id="pay" @click="getVal(id)">
-	    		<orderlist v-for="n in 4" :key="n"></orderlist>
+				  222
+	    		<!-- <orderlist v-for="n in 4"></orderlist> -->
 	  		</mt-tab-container-item>
 	  		<mt-tab-container-item id="trip" @click="getVal(id)">
-	    		<orderlist v-for="n in 10" :key="n"></orderlist>
+				  333
+	    		<!-- <orderlist v-for="n in 10"></orderlist> -->
 	  		</mt-tab-container-item>
 	  		<mt-tab-container-item id="comment" @click="getVal(id)">
-	    		<orderlist v-for="n in 3" :key="n"></orderlist> 
-	  		 </mt-tab-container-item> 
+				  444
+	    		<!-- <orderlist v-for="n in 3"></orderlist> -->
+	  		</mt-tab-container-item>
 		</mt-tab-container>
 	</div>
 </template>
@@ -39,8 +41,10 @@
 				selected:""
 			}
 		},
+		props:["val"],
 		created(){
 			this.getVal()
+			this.selected=this.val;
 		},
 		methods:{
 			getVal(){
@@ -55,7 +59,7 @@
 		}
 	}
 </script>
-<style>
+<style scoped>
 	.mint-navbar{
 		margin-top:40px;
 	}
@@ -77,8 +81,7 @@
 	.mint-navbar .mint-tab-item.is-selected{
 		border-bottom: none;
 	}
-	/* 此处影响了全局样式??? */
-	/*.mint-tab-container-item{
+	/* .mint-tab-container-item{
 		margin-top:87px;
-	}*/
+	} */
 </style>

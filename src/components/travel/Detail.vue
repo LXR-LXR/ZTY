@@ -14,13 +14,13 @@
         <div id="mt-swap" v-for='(item1,item) of list' :key='item.i'>
             <mt-swipe :auto="4000" class="mt-swipe" :show-indicators="false">
                 <mt-swipe-item>
-                    <img :src="'http://127.0.0.1:5050/'+item1.p_ban1"  alt="">
+                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban1"  alt="">
                 </mt-swipe-item>
                 <mt-swipe-item>
-                    <img :src="'http://127.0.0.1:5050/'+item1.p_ban2" alt="">
+                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban2" alt="">
                 </mt-swipe-item>
                 <mt-swipe-item>
-                    <img :src="'http://127.0.0.1:5050/'+item1.p_ban3" alt="">
+                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban3" alt="">
                 </mt-swipe-item>
             </mt-swipe>
         </div>
@@ -28,7 +28,7 @@
             <div class="score">
                 <ul>
                     <li>{{item.subtitle}}分</li>
-                    <li>895人出行</li>
+                    <li>{{item.people}}人出行</li>
                 </ul>
                 <h3>{{item.title}}</h3>
                 <p>
@@ -84,7 +84,7 @@
                              <div class="desc">{{item.details}} </div>
                              <div class="line"></div>
                              <h4>景点介绍</h4>
-                      <img :src="'http://127.0.0.1:5050/'+item.p_img"  />
+                      <img :src="'https://ztyranxiaomo.applinzi.com/'+item.p_img"  />
                 
                    </div>
                      </div>
@@ -114,10 +114,10 @@
                         在线咨询
                     </li>
                 </ul>
-                <router-link :to="/order/+lid+'/'+uid">
+                <button  @click="toOrder">
                     立即预定
                     
-                </router-link>
+                </button>
             </div>
         </div>
     </div>
@@ -134,6 +134,8 @@ export default {
     },
     // 组件传参
     props:["lid","uid"], //{ ..., props:true}
+    
+    
     created(){
     // 创建url /detail
     // 参数 lid
@@ -145,9 +147,26 @@ export default {
                 this.list=res.data.data;
                 console.log('这是商品详情list');
                 console.log(this.list)
+                if(res.data.code==-1){
+            // 6.如果没有登录提示
+                // this.$toast("请登录");
+                }
  })
   },
     methods:{
+       toOrder(){
+            var uid=parseInt(this.uid);
+            uid=isNaN(uid)
+            if(uid)
+            {
+                this.$router.push('/loginMethods');
+            }
+            else
+            {
+                console.log(11111111111);
+                this.$router.push(/order/+this.lid+'/'+this.uid);
+            }
+        },
         img(){
             if(this.click)
             {
@@ -372,17 +391,12 @@ export default {
        display: block;
        margin:0 auto;
    }
-   .footer a{
+   .footer button{
        width:35%;
-       padding:5px 10px;
        background:tomato;
        color:#fff;
-       text-decoration: none;
        margin-right:15px;
        border-radius:5px;
-       display:inline-block;
-       height:35px;
-       line-height:35px;
-       text-align:center;
+       border:0
    }
 </style>

@@ -1,12 +1,14 @@
 <template>
     <!-- 最外层div -->
     <div id="container">
+	<!-- 定位 -->
+        <div>{{LocationCity}}</div>
         <!-- 顶部搜索框 -->
         <div class="search">
-            <router-link to="/my">
+            <!-- <router-link to="/my"> -->
                 <input type="text" placeholder="请输入搜索内容">
                 <p>搜索</p>
-            </router-link>
+            <!-- </router-link> -->
         </div>
         <!-- 电梯导航栏 左侧-->
         <div class="goal-nav-left">
@@ -65,12 +67,12 @@
                <mt-tab-container-item id="tab2">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/goal-img/gugong.png" alt="">
+                        <img src="../../../static/goal-img/beijing1.gif"  alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/goal-img/gugong.png" alt=""> 
+                                <img src="../../../static/goal-img/beijing5.gif" alt=""> 
                                 故宫
                             </div>
                             <div id="hot-goal-item">
@@ -101,373 +103,269 @@
                <mt-tab-container-item id="tab3">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                        <img src="../../../static/goal-img/sahnghai1.jpg" alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shanghai4.jpg" alt=""> 
+                                必去景点
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shanghai2.jpg" alt=""> 
+                                夜上海
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shanghai3.jpg" alt=""> 
+                                上海滩
                             </div>                  
                     </div>
                     <div id="all-goal">
                         <p>全部目的地</p>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>迪士尼度假区</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>上海滩</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>东方明珠</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>外滩</mt-button>
                             </div>
                     </div>
                </mt-tab-container-item>
                <mt-tab-container-item id="tab4">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                        <img src="../../../static/goal-img/shenzhen1.jpg" alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static//goal-img/shenzhen2.jpg" alt=""> 
+                                海滩
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static//goal-img/shenzhen3.jpg" alt=""> 
+                                必去景点
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static//goal-img/shenzhen4.jpg" alt=""> 
+                                日出
                             </div>                  
                     </div>
                     <div id="all-goal">
                         <p>全部目的地</p>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>海上世界</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>梧桐山</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button></div>
+                                <mt-button>世界之窗</mt-button></div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>必去城市</mt-button>
                             </div>
                     </div>
                </mt-tab-container-item>
+               <!-- 河北 -->
                <mt-tab-container-item id="tab5">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                        <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                         <div id="hot-goal-item">
-                            <img src="../../../static/home/goal-c.png" alt=""> 
-                            123
+                           <img src="../../../static/goal-img/hebei2.jpg" alt="">
+                            山
                         </div>
                          <div id="hot-goal-item">
-                            <img src="../../../static/home/goal-c.png" alt=""> 
-                            123
+                           <img src="../../../static/goal-img/hebei3.jpg" alt="">
+                            云海
                         </div>
                          <div id="hot-goal-item">
-                            <img src="../../../static/home/goal-c.png" alt=""> 
-                            123
+                           <img src="../../../static/goal-img/hebei1.jpg" alt="">
+                            北戴河
                         </div>                  
                     </div>
                     <div id="all-goal">
                         <p>全部目的地</p>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>必去景点</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>爬山</mt-button>
                             </div>
                             <div>
-                                <mt-button>城市</mt-button>
+                                <mt-button>观景</mt-button>
                             </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
+                           
                     </div>
                </mt-tab-container-item>
+               <!-- 山东 -->
                <mt-tab-container-item id="tab6">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                        <img src="../../../static/goal-img/shandong1.jpg" alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                                泰山
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                                五岳之尊
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                                必去景点
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                  
                </mt-tab-container-item>
+               <!-- 沈阳 -->
                <mt-tab-container-item id="tab7">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                        <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                                
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                             
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                               
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                  
                </mt-tab-container-item>
+               <!-- 贵州 -->
                <mt-tab-container-item id="tab8">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                      <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
-                    <div id="hot-goal">
+                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                              
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                                
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                                
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                   
                </mt-tab-container-item>
+               <!-- 河南 -->
                <mt-tab-container-item id="tab9">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                      <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
-                    <div id="hot-goal">
+                      <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                              
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                               
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                               
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                   
                </mt-tab-container-item>
+               <!-- 湖北 -->
                <mt-tab-container-item id="tab10">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                         <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
-                    <div id="hot-goal">
+                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                           
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                                
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                                
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                   
                </mt-tab-container-item>
+               <!-- 湖南 -->
                <mt-tab-container-item id="tab11">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                    <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
-                    <div id="hot-goal">
+                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                               
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                        
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                                
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                    
                </mt-tab-container-item>
+               <!-- 宁夏 -->
                <mt-tab-container-item id="tab12">
                     <div id="p-style1">
                         <p>全部线路</p>
-                        <img src="../../../static/home/goal-c.png" alt="">
+                      <img src="../../../static/goal-img/hebei1.jpg" alt="">
                     </div>
-                    <div id="hot-goal">
+                      <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                               <img src="../../../static/goal-img/shandong1.jpg" alt="">
+                               
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong2.jpg" alt="">
+                               
                             </div>
                             <div id="hot-goal-item">
-                                <img src="../../../static/home/goal-c.png" alt=""> 
-                                123
+                                <img src="../../../static/goal-img/shandong3jpg.jpg" alt="">
+                                
                             </div>                  
                     </div>
-                    <div id="all-goal">
-                        <p>全部目的地</p>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                            <div>
-                                <mt-button>城市</mt-button>
-                            </div>
-                    </div>
+                  
                </mt-tab-container-item>
            </mt-tab-container>     
         </div>      
@@ -477,11 +375,29 @@
 export default {
     data(){
         return{
-            active:"tab1"
+            active:"tab2",
+	        LocationCity:"正在定位",
         }
     },
+    // 定位开始
+    created(){
+        this.city()//触发获取城市方法
+    },
     // 点击切换面板事件
     methods:{
+	city(){    //定义获取城市方法
+            const geolocation = new BMap.Geolocation();
+            var _this = this
+            geolocation.getCurrentPosition(function getinfo(position){
+                let city = position.address.city;             //获取城市信息
+                let province = position.address.province;    //获取省份信息
+                _this.LocationCity = city
+            }, function(e) {
+                _this.LocationCity = "定位失败"
+            }, 
+            {provider: 'baidu'});        
+        },
+        // 定位结束
         btn1(){
             this.active="tab1"
         },

@@ -4,7 +4,7 @@
     <div>
       <mt-header title="提交订单">
         <!--此处跳转到详情页-->
-        <router-link to="/Detail" slot="left">
+        <router-link :to="/Detail/+lid+'/'+uid" slot="left">
         <mt-button icon="back">back</mt-button>
         </router-link>
       </mt-header>
@@ -133,11 +133,12 @@
             price:price
           }
           this.axios.get(url,{params:obj}).then(res=>{
-            /*if(res.data.data.code===1)
-            {
-
-            }*/
             console.log(res)
+            if(res.data.code===1)
+            {
+              
+              this.$router.push('/Pay/'+this.uid);
+            }
           })
         },
         selectData () { // 打开时间选择器

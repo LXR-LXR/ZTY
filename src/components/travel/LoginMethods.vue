@@ -1,6 +1,11 @@
 <template>
+<div>
+  <div id="fanhui" >
+      <router-link to="/" :uid1="uid1">返回</router-link> 
+  </div>
   <div id="parent">
-      <!-- logo -->
+    <!-- logo -->
+    
     <h4>憨憨账号登录</h4>
     <div class="input">
         <!--用户名输入框-->
@@ -10,7 +15,7 @@
     </div>
     <!--登录按钮-->
     <div class="bt">
-        <router-link to="loginDetail">
+        <router-link to="">
             <button type="primary" size="large" @click="login">登录</button>
         </router-link>
     </div>
@@ -36,13 +41,15 @@
         <div class="foot">登录/即代表同意<a href=""> 臭泽泽用户使用协议</a></div>
     </footer>
   </div>
+  </div>
 </template>
 <script>
 export default {
   data(){
     return {
       uname:"", //输入用户名
-      upwd:""   //输入密码
+      upwd:"",   //输入密码
+      uid1:"tab4"
     }
   },
   methods:{
@@ -100,7 +107,10 @@ var obj={uname:u,upwd:p};
     /* display: flex; */
     /* justify-content: center; */
     margin: 20% auto;
-   
+}
+#fanhui{
+    margin:10px 0 0 10px;
+    font-size:20px;
 }
 /*Logo字体*/ 
 h4{

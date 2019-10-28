@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
+
 import Home from '@/components/travel/Home'
 import Detail from '@/components/travel/Detail'
 import Travel from '@/components/travel/Travel'
@@ -12,9 +13,12 @@ import UserReg from '@/components/travel/UserReg'
 import MyCart from '@/components/travel/MyCart'
 import MyOrder from '@/components/travel/MyOrder'
 import OrderList from '@/components/travel/OrderList'
-import Order from '@/components/travel/Order'  
+import Order from '@/components/travel/Order'
 import LoginDetail from '@/components/travel/LoginDetail'
-
+import Tuijian from '@/components/travel/Tuijian'
+import Love from '@/components/travel/Love'
+import Pay from '@/components/travel/Pay'
+import Successful from '@/components/travel/Successful'
 
 
 Vue.use(Router)
@@ -22,9 +26,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
    {path: '/loginDetail',component: LoginDetail},
+   {path: '/love',component: Love},
+   {path: '/tuijian/:tid',component: Tuijian,props:true},
    {path: '/order/:lid/:uid',component: Order,props:true},
    {path: '/orderList',component: OrderList},
-    {path: '/myOrder',component: MyOrder},
+    {path: '/myOrder/:val',component: MyOrder,props:true},
     {path: '/myCart',component: MyCart},
     {path: '/userReg',component: UserReg},
     {path: '/loginMethods',component: LoginMethods},
@@ -34,6 +40,8 @@ export default new Router({
     {path: '/travel',component: Travel},
     {path: '/Detail/:lid/:uid',component: Detail,props:true},
     {path: '/',component: Home},
-    {path: '/home/:uid',component: Home,props:true}
+    {path: '/home/:uid',component: Home,props:true},
+    {path: '/Pay/:uid',component: Pay,props:true},
+    {path: '/Successful',component: Successful}
   ]
 })

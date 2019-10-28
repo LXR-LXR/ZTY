@@ -73,22 +73,15 @@
             </div> 
            <div class="nav_bar">
                 <div class="nav_box">
-                    <ul class="nav_bar_ul">
-                        <a href="#"> 
-                        <li><img src="@../../../static/index_pic/icon/Ind.png" ><p> 当地跟团 </p> </li>
-                        </a> 
-                        <a href="#"> 
-                            <li><img src="@../../../static/index_pic/icon/local.png" ><p> 当地玩乐 </p> </li>
-                        </a> 
-                        <a href="#"> 
-                        <li><img src="@../../../static/index_pic/icon/ship.png" ><p> 邮游轮 </p> </li>
-                        </a> 
-                        <a href="#"> 
-                        <li><img src="@../../../static/index_pic/icon/roll.png" ><p> 精品小团 </p> </li>
-                        </a> 
-                        <a href="#"> 
-                        <li><img src="@../../../static/index_pic/icon/bard.png" ><p> 个性定制 </p> </li>
-                        </a> 
+                    <ul class="nav_bar_ul" >
+                       
+                        <li v-for="(item,i) of item" :key='i'>
+                         <router-link :to='/tuijian/+item.tid'>     
+                        <img :src="item.icon" ><p> {{item.text}} </p> 
+                         </router-link> 
+                        </li>
+                                  
+                          
                     </ul>
                 </div>
                 <div>
@@ -116,13 +109,13 @@
                 <div class="promote">
                     <div class="pro_1f">
                         <div>
-                            <h3>新人超值专项</h3>
+                            <h3>新人超值</h3>
                         </div>
                         <div class="f1_R">
-                            <a href="">
-                                <p>查看全部</p>
-                                <h3>＞</h3>
-                            </a>
+                            <!-- <a href=""> -->
+                                <!-- <button @click="loadMore">查看全部</button>
+                                <h3>＞</h3> -->
+                            <!-- </a> -->
                         </div>
                     </div>
                     <div class="pro_2f">
@@ -145,60 +138,82 @@
                             <h3>热门目的地</h3>
                         </div>
                         <div class="f1_R">
-                            <a href="">
+                            <router-link to="/goal">
                                 <p>查看全部</p>
                                 <h3>＞</h3>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                     <div class="hot_bourn">
-                        <div class="hot_nav">
-                            <div class="hot_info">北美洲</div>
-                            <div class="hot_info">非洲</div>
-                            <div class="hot_info">奥新</div>
-                            <div class="hot_info">法国</div>
-                        </div>
-                        <div class="bourn_info">
-                            <div>
-                                <ul>
-                                    <li>
-                                        <a href="" id="bourn_pic">
-                                            <img src="@../../../static/index_pic/pic/jhk-08.jpg">
-                                        </a>
-                                    </li>
-                                    <li><a href="javascript:;" id="first_text">澳大利亚</a></li>
-                                    <li><a href="javascript:;" id="net_text">凯恩斯</a></li>
-                                    <li><a href="javascript:;"  class="last_text">皇后镇</a></li>
-                                    <li><a href="javascript:;"  class="last_text">墨尔本</a></li>
-                                </ul>
+                       <mt-navbar v-model="selected" >
+                            <mt-tab-item id="1">北京</mt-tab-item>
+                            <mt-tab-item id="2">上海</mt-tab-item>
+                            <mt-tab-item id="3">深圳</mt-tab-item>
+                          
+                        </mt-navbar>
+
+                        <!-- tab-container 面板 -->
+                        <mt-tab-container v-model="selected">
+                        <mt-tab-container-item id="1">
+                            <div class="goal-img">
+                                <div class="goal-img-item" >
+                                <img src="../../../static/goal-img/beijing1.gif" alt="">
+                                <span>北京</span>
+                                </div>
+                                 <div class="goal-img-item" >
+
+                                <img src="../../../static/goal-img/beijing2.jpg" alt="">
+                                 <span>北京</span>
+                                 </div>
+                                  <div class="goal-img-item" >
+
+                                <img src="../../../static/goal-img/beijing5.gif" alt="">
+                                 <span>北京</span>
+                                 </div>
+                               
                             </div>
-                            <div>
-                                <ul>
-                                    <li>   
-                                        <a href="javascript:;" id="bourn_pic">
-                                            <img src="@../../../static/index_pic/pic/jhk-08.jpg">
-                                        </a>
-                                    </li>
-                                    <li><a href="javascript:;" id="first_text">奥克兰</a></li>
-                                    <li><a href="javascript:;" id="net_text">悉尼</a></li>
-                                    <li><a href="javascript:;"  class="last_text">布里斯班</a></li>
-                                    <li><a href="javascript:;"  class="last_text">基督城</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul>
-                                <li>
-                                        <a href="javascript:;" id="bourn_pic">
-                                            <img src="@../../../static/index_pic/pic/jhk-08.jpg">
-                                        </a>
-                                    </li> 
-                                    <li><a href="javascript:;" id="first_text">特卡波</a></li>
-                                    <li><a href="javascript:;" id="net_text">林肯港</a></li>
-                                    <li><a href="javascript:;"  class="last_text">白日梦岛</a></li>
-                                    <li><a href="javascript:;"  class="last_text">阿尔卑斯</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        </mt-tab-container-item>
+                          <mt-tab-container-item id="2">
+                                <div class="goal-img">
+                                <div class="goal-img-item" >
+                                <img src="../../../static/goal-img/sahnghai1.jpg" alt="">
+                                <span>东方明珠</span>
+                                </div>
+                                 <div class="goal-img-item" >
+
+                               <img src="../../../static/goal-img/shanghai4.jpg" alt="">
+                                 <span>经典景点</span>
+                                 </div>
+                                  <div class="goal-img-item" >
+
+                              <img src="../../../static/goal-img/shanghai2.jpg" alt="">
+                                 <span>夜上海</span>
+                                 </div>
+                                </div>
+                          </mt-tab-container-item>
+                       
+                          <mt-tab-container-item id="3">
+                           
+                             <div class="goal-img">
+                                <div class="goal-img-item" >
+                                <img src="../../../static/goal-img/shenzhen1.jpg" alt="">
+                                <span>经典</span>
+                                </div>
+                                 <div class="goal-img-item" >
+
+                               <img src="../../../static/goal-img/shenzhen4.jpg" alt="">
+                                 <span>日出</span>
+                                 </div>
+                                  <div class="goal-img-item" >
+
+                              <img src="../../../static/goal-img/shenzhen2.jpg" alt="">
+                                 <span>海滩</span>
+                                 </div>
+                                </div>      
+                         </mt-tab-container-item>
+                      
+                       
+                         </mt-tab-container>
                     
                     
                     </div>
@@ -206,16 +221,16 @@
                     <!-- ##########首页 -->
                     <div class="pro_1f">
                         <div>
-                            <h3>新人超值专项</h3>
+                            <h3>新人超值专享</h3>
                         </div>
                     </div>
                     <div class="hot_sell">
                        <div v-for='(item,i) of list' :key='i' class="every">
-                            <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
+                         
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href+'/'+uid" class="aaa">
-                                       <img :src="'http://127.0.0.1:5050/'+item.pic">
+                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -225,12 +240,12 @@
                                     <div class="hot_info">
                                         <span class="hot_pri">￥{{item.price.toFixed(2)}}</span>
                                         <span class="hot_up">/起</span>
-                                        <span class="sell_info">1034人出行</span>
+                                        <span class="sell_info">{{item.people}}人出行</span>
                                     </div>
                                      </router-link>
                                 </div>
-                            <!-- </router-link> -->
                        </div>
+                           <button @click="loadMore">下滑查看更多</button>
                     </div>
                 </div>
             </div>
@@ -247,7 +262,16 @@ export default {
         // 存放服务端查询成功得到的结果集result select 成功的
         return {
             list:[],  //商品列表数组
-            pno:0     //页码（第几页）
+            pno:0,//页码（第几页）
+            selected:'1',
+            item:[
+                {tid:1,icon:require('../../../static/index_pic/icon/Ind.png'),text:'推荐'},
+                {tid:2,icon:require('../../../static/index_pic/icon/local.png'),text:'当地玩乐'},
+                {tid:3,icon:require('../../../static/index_pic/icon/ship.png'),text:'邮轮游'},
+                {tid:4,icon:require('../../../static/index_pic/icon/roll.png'),text:'精品小团'},
+                {tid:5,icon:require('../../../static/index_pic/icon/bard.png'),text:'个性定制'}
+               
+                ]
         }
     },
  // 页面加载中调用ajax请求
@@ -292,6 +316,28 @@ export default {
 .aaa{
     display: block;
 }
+.goal-img{
+    display: flex;
+    justify-content: space-around;
+    margin-top:3%;
+}
+/* .goal-img  img{
+    width: 30%;
+    height: 80%;;
+} */
+.goal-img-item{
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+}
+.goal-img-item img{
+   width: 100%;
+   /* margin-left: 2%; */
+    height: 100%;
+}
 .main_part{
     font-size: 12px;
     /* position: relative; */
@@ -313,6 +359,7 @@ export default {
     outline: none;
 }
  .d1{
+    width:100%;
     position: fixed;
     z-index: 1;
     top:0;
