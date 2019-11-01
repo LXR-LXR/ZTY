@@ -76,7 +76,7 @@
                     <ul class="nav_bar_ul" >
                        
                         <li v-for="(item,i) of item" :key='i'>
-                         <router-link :to='/tuijian/+item.tid'>     
+                         <router-link :to="/tuijian/+item.tid+'/'+uid">     
                         <img :src="item.icon" ><p> {{item.text}} </p> 
                          </router-link> 
                         </li>
@@ -138,7 +138,7 @@
                             <h3>热门目的地</h3>
                         </div>
                         <div class="f1_R">
-                            <router-link to="/goal">
+                            <router-link :to="/home/+uid+'/'+uid1">
                                 <p>查看全部</p>
                                 <h3>＞</h3>
                             </router-link>
@@ -230,7 +230,7 @@
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href+'/'+uid" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -245,7 +245,7 @@
                                      </router-link>
                                 </div>
                        </div>
-                           <button @click="loadMore">下滑查看更多</button>
+                           <button @click="loadMore" class="btn">下滑查看更多</button>
                     </div>
                 </div>
             </div>
@@ -258,7 +258,7 @@
 <script>
 
 export default {
-   data(){
+   data:function(){
         // 存放服务端查询成功得到的结果集result select 成功的
         return {
             list:[],  //商品列表数组
@@ -271,13 +271,13 @@ export default {
                 {tid:4,icon:require('../../../static/index_pic/icon/roll.png'),text:'精品小团'},
                 {tid:5,icon:require('../../../static/index_pic/icon/bard.png'),text:'个性定制'}
                
-                ]
+            ],
+            uid1:"tab2"
         }
     },
  // 页面加载中调用ajax请求
     created() {
         this.loadMore();
-        console.log(this.uid);
     },
     props:["uid"],
     methods:{ 
@@ -290,15 +290,11 @@ export default {
             // 3.发送axios请求
             this.axios.get(url,{params:obj}).then(res=>{
             // res中有响应结果码 还有data code；1 data返回结果集 四个商品[{},{},]
-            console.log('这是ajax返回的res');
-            console.log(res);
             // 4.接收返回结果并且显示
             // this.list = res.data.data;
             // 拼接上一页和下一页的数组  concat
             var rows=this.list.concat(res.data.data);
             this.list=rows;         
-            console.log('这是this.list')
-            console.log(this.list)
             }) 
         },
 }
@@ -619,5 +615,10 @@ export default {
 }
 .sell_info{
     padding-right:1%；
+}
+.btn{
+    border:0;
+    background:#277bca;
+    color:white
 }
 </style>

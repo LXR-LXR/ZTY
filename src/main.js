@@ -38,7 +38,7 @@ Vue.use(Stepper);
 // npm install --save axios
 import axios from 'axios'
 // 6 配置服务器基础路径
-axios.defaults.baseURL='https://ztyranxiaomo.applinzi.com/';
+axios.defaults.baseURL='https://ranxiaomozty.applinzi.com/';
 // 7配置保存session信息 为true 保存seesion
 axios.defaults.withCredentials=true
 // 8；axios 注册vue

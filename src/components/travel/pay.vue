@@ -3,8 +3,8 @@
         <div id="parent">
             <ul id="pay">
                 <li>
-                    <router-link to="">
-                        <img src="../../../static/pay_img/fanhui.png" alt="">
+                    <router-link :to="/Order/+lid+'/'+uid" >
+                        <img src="../../../static/pay_img/fanhui.png"  alt="">
                     </router-link>
                 </li>
                 <li>
@@ -61,7 +61,7 @@
                 <van-cell id="cell1" value="确认付款"/>
                 <van-cell id="cell2" :value="'￥'+price1"/>
 
-                <van-button type="primary" size="large" id="button" @click="showmessage1">大号按钮</van-button>
+                <van-button type="primary" size="large" id="button" @click="showmessage1">马上支付</van-button>
                 <!-- <router-link to="" @click.native="showmessage1">
                 大号按钮
                 </router-link> -->
@@ -117,7 +117,7 @@ import SuccessfulVue from './Successful.vue';
                 showKeyboard: true
             }
         },
-        props:["uid"],
+        props:["lid","uid"],
         created(){
             var uid=this.uid;
             var url='findcart'
@@ -150,16 +150,17 @@ import SuccessfulVue from './Successful.vue';
                 this.value1 = this.value1.slice(0, this.value1.length - 1);
             },
             pay(){
-                console.log(1111111)
                 var arr=this.value1.split("");
-                console.log(arr)
                 if(arr.length===6)
                 {
                     this.$toast('支付成功');
-                    this.$router.push('/Successful');
+                    var obj={status:2}
+                    this.axios.get('/updateOrder',{params:obj})
+                    .then(result=>{})
+                    this.$router.push('/Successful/'+this.uid);
                     this.show=!this.show;
                 }
-            },
+            }
         }
     }
 </script>
@@ -167,6 +168,7 @@ import SuccessfulVue from './Successful.vue';
     #parent{
         position: fixed;
         width:100%;
+        z-index:2;
     }
     #pay{
         width:100%;

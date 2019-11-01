@@ -90,7 +90,7 @@
         uname:"",
         phone:"",
         address:"",
-        title:"八达岭长城，明十三陵，鸟巢等纯游玩一日跟团",
+        title:"",
         year:"",
         dateValue:"",
         popupVisible:false,
@@ -109,8 +109,6 @@
 
     methods:{
         user(){
-          console.log("wo")
-          console.log(this.adult*this.adultPrice+this.child*this.childrenPrice*0.5+this.group*this.organizePrice*0.85.toFixed(2))
           //提交订单将信息插入数据库
           //var uid
           var url='addcart';
@@ -133,11 +131,10 @@
             price:price
           }
           this.axios.get(url,{params:obj}).then(res=>{
-            console.log(res)
             if(res.data.code===1)
             {
               
-              this.$router.push('/Pay/'+this.uid);
+              this.$router.push('/Pay/'+this.lid+'/'+this.uid);
             }
           })
         },
@@ -160,7 +157,6 @@
          var url='findcart';
         // 2发送ajax 请求获取购物车
         this.axios.get(url).then(res=>{
-            console.log(res.data.code);
             if(res.data.code==-1){
                 // 提示交互提示框 .then 回调函数 函数执行完后进行的操作
                 this.$messagebox('消息','请登录').then(res=>{
@@ -180,8 +176,6 @@
                 //  }
                 //  (2)添加属性并且赋值
                 this.list=list;
-                console.log('加入购物车 this.list');
-                console.log( this.list);
                 // 2.9加载完之前 前清空
                 // this.$store.commit('clearCart');
                 // (3)创建循环 遍历数组
@@ -203,6 +197,7 @@
             this.adultPrice=res.data.data[0].adult
             this.childrenPrice=res.data.data[0].children
             this.organizePrice=res.data.data[0].organize
+            this.title=res.data.data[0].details
           })
         },
     },

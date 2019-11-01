@@ -10,7 +10,7 @@
         </mt-tab-container-item>
         <!-- 目的地 -->
          <mt-tab-container-item id="tab2">
-            <goal></goal>
+            <goal @paramsChange="getSubComponentParams($event)"></goal>
         </mt-tab-container-item>
         <!-- 行程 -->
          <mt-tab-container-item id="tab3">
@@ -40,7 +40,7 @@
                     :selectedImage="require('../../../static/home/goal-c.png')"
                     :focused="currentIndex[1].isSelect">
                 </tabbar>
-                目的地
+                {{city}}
             </mt-tab-item>
             <!-- 行程 -->
             <mt-tab-item id="tab3" @click.native="change(2)">
@@ -61,7 +61,6 @@
                 我的
             </mt-tab-item>
         </mt-tabbar>
-
 
         <!-- 引入tabbar子组件 -->
         
@@ -88,12 +87,12 @@ export default {
                 {isSelect:false},
                 {isSelect:false},
                 {isSelect:false}
-            ]
+            ],
+            city:'目的地'
         }
     },
     props:["uid","uid1"],
     created(){
-        console.log(this.uid1);
         if(this.uid1!=null)
         this.active=this.uid1;
     },
@@ -106,6 +105,9 @@ export default {
                     this.currentIndex[i].isSelect=false;
                 }
             }
+        },
+        getSubComponentParams(event){
+            this.city=event
         }
     },
     components:{
@@ -129,13 +131,4 @@ export default {
         overflow: hidden;
         padding-bottom:50px;
     }
-
-
-
-
-
-
-
-
-
 </style>

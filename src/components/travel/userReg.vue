@@ -1,25 +1,67 @@
 <template>
     <div>
-    
-        <div id='reg' class="parent">
-            <h3>注册页面</h3>
-            <input v-model="uname" @blur="regUname()" type="text" placeholder="请输入想要注册的用户名" autofocus>
-            <span class="regMsg">{{unameMsg}}</span>
-            <br>
-            <input v-model="upwd" @blur="regUpwd()" type="password" placeholder="请输入密码">
-             <span class="regMsg">{{upwdMsg}}</span>
-            <br>
-          <input v-model="supwd" @blur="confirm()" type="password" placeholder="确认密码">
-          <span class="regMsg">{{supwdMsg}}</span>
-          <br>
-           <input v-model="phone" @blur='regPhone()' type="text" placeholder="请输入手机号">
-           <span class="regMsg">{{phoneMsg}}</span>
-           <br>
-            <input v-model="email" @blur='regEmail()' type="text" placeholder='请输入邮箱'>
-            <span class="regMsg">{{emailMsg}}</span>
-            <br>
-            <button @click="submit" id='reg-btn'> 注册</button>
+        <div id="parent">
+            <van-button type="primary" to="loginMethods">返回</van-button>
+            <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)">注册页面</van-button>
         </div>
+        <van-cell-group>
+            <van-field
+                v-model="uname"
+                @blur="regUname" 
+                required
+                clearable
+                label="用户名"
+                right-icon="question-o"
+                placeholder="请输入用户名"
+                @click-right-icon="$toast('用户名')"
+            />
+            <span class="regMsg">{{unameMsg}}</span>
+            <van-field
+                v-model="upwd"
+                @blur="regUpwd"
+                type="password"
+                label="密码"
+                placeholder="请输入密码"
+                required
+                right-icon="question-o"
+                @click-right-icon="$toast('密码')"
+            />
+            <span class="regMsg">{{upwdMsg}}</span>
+            <van-field
+                v-model="supwd"
+                @blur="confirm"
+                type="text"
+                label="确认密码"
+                placeholder="确认密码"
+                required
+                right-icon="question-o"
+                @click-right-icon="$toast('密码')"
+            />
+            <span class="regMsg">{{supwdMsg}}</span>
+            <van-field
+                v-model="phone"
+                @blur='regPhone'
+                type="text"
+                label="手机号"
+                placeholder="请输入手机号"
+                required
+                right-icon="question-o"
+                @click-right-icon="$toast('手机号')"
+            />
+            <span class="regMsg">{{phoneMsg}}</span>
+            <van-field
+                v-model="email"
+                @blur='regEmail'
+                type="text"
+                label="邮箱号"
+                placeholder='请输入邮箱'
+                required
+                right-icon="question-o"
+                @click-right-icon="$toast('邮箱')"
+            />
+            <span class="regMsg">{{emailMsg}}</span>
+            <button @click="submit" id='reg-btn'> 注册</button>
+        </van-cell-group>
     </div> 
 </template>
 <script>
@@ -58,7 +100,6 @@
                 // 非空验证
                 if(u===''){
                      this.unameMsg='用户名不能为空'
-                  console.log(u);
                    return;
                 }else{
                       //如果不合规范 则提示  
@@ -75,7 +116,6 @@
                     this.upwdMsg='密码不能为空'
                     return
                 }else{
-                    console.log(upwdReg.test(this.upwd))
                  upwdReg.test(this.upwd)?this.upwdMsg='':this.upwdMsg='以字母开头，长度在6-18之间，只能包含字母、数字和下划线。'
                 }
             },
@@ -100,7 +140,6 @@
                 // 定义邮箱验证正则  /^\w+[-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
                   var emailReg= /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
                 // 如果为空 就提示
-                console.log(this.email)
                 if(this.email===''){
                     this.emailMsg='邮箱不能为空'
                     return
@@ -113,17 +152,17 @@
             submit(){
                  var u=this.uname
                  var url='register';
-                 var obj={uname:u,upwd:this.upwd}
+                 var obj={uname:u,upwd:this.upwd,email:this.email,phone:this.phone}
                this.axios.get(
                    url,
                {params:obj})
                .then(result=>{
-                 console.log(result);
                 //9:获取服务器返回结果
                 //10:登录失败提示消息
                 //11:登录成功跳转 /Product
                 if(result.data.code==200){
                     this.$messagebox('消息','用户名注册成功，即将跳转登陆页面');
+                    this.$router.push('/loginMethods')
                 }
                 else{
                     this.$messagebox('消息','用户名已存在，请重新输入');
@@ -134,31 +173,34 @@
     }        
 
 </script>
-<style>
-    .parent{
-        text-align:center;
+<style scoped>
+    #parent{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
     }
-    .regMsg{color:red;font-size:7px;display: block}
-    
-    /* 外层div    div>span+input*/
-    #reg{padding-top:50px ;}
-    #reg>input{
-        width: 60%;
-        height: 22px;
-        border:none;
-        border-bottom:#ddd solid 1px;
-        outline: none;
-        padding-left: 20px;
-        }
+    .van-button--normal:nth-child(2)
+    {
+        width:80%;
+    }
+    .van-button--primary:nth-child(1){
+        width:20%;
+    }
+    .van-cell:nth-child(1){
+        margin-top:60px;
+    }
+    .van-cell{
+        margin-bottom:15px;
+    }
     #reg-btn{
-        width: 60%;
-        height: 40px;
-        background:#111111;
-        font-size: 18px;
-        margin:0 auto;
-        color: aliceblue;
-        border-radius: 5px;
-        font-weight: 400;
+        margin-top:15px;
+        width:100%;
+        border:0;
+        background:cyan;
+        padding:15px 0
+    }
+    .regMsg{
+        color:red;
     }
 
 </style>

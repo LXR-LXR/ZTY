@@ -1,23 +1,23 @@
 <template>
     <div>
         <div id="container">
-        <div class="header">
-        </div>
-        <ul class="content">
-            <li v-for="(item, index) in messageList" :key="index">
-                <img :src="'./img/'+(item.myself?'k.png':'l.png')" :class="'img'+(item.myself?'right':'left')">
-                <span :class="'span'+(item.myself?'right':'left')">{{item.message}}</span>
-            </li>
-            <!-- <li><img src="./img/l.png" class="imgleft"><span class="spanleft">好诗好诗</span></li> -->
-        </ul>
-        <div class="footer">
-            <div id="user_face_icon">
-                <img src="../../../static/my_personal/brand.png" alt="">
+            <div class="header">
             </div>
-            <input id="text" type="text" v-model.trim="inputValue" @keyup.enter='chat' placeholder="说点什么吧...">
-            <span id="btn" @click="chat">发送</span>
+            <ul class="content" style="height:800px;">
+                <li v-for="(item, index) in messageList" :key="index"  >
+                    <img style="height:800px;" :src="'./img/'+(item.myself?'k.png':'l.png')" :class="'img'+(item.myself?'right':'left')">
+                    <span :class="'span'+(item.myself?'right':'left')">{{item.message}}</span>
+                </li>
+                <!-- <li><img src="./img/l.png" class="imgleft"><span class="spanleft">好诗好诗</span></li> -->
+            </ul>
+            <div class="footer">
+                <div id="user_face_icon">
+                    <img src="../../../static/my_personal/brand.png" alt="">
+                </div>
+                <input id="text" type="text" v-model.trim="inputValue" @keyup.enter='chat' placeholder="说点什么吧...">
+                <span id="btn" @click="chat">发送</span>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 <script>
@@ -50,9 +50,9 @@ export default {
 
         },
                 created(){
-                var url = this.HOME + 'http://www.tuling123.com/openapi/api';
+                var url = this.HOME + 'https://www.tuling123.com/openapi/api';
                 $.ajax({
-                    url: 'http://www.tuling123.com/openapi/api',
+                    url: 'https://www.tuling123.com/openapi/api',
                     method: 'post',
                     data: {
                         key: '38f61c4bee2842f49d35b87216f7a217',
@@ -83,11 +83,12 @@ export default {
             margin: 0;
             padding: 0;
             list-style: none;
-            font-family: '微软雅黑'
+            font-family: '微软雅黑';
         }
-        #container {
+        
+        #container{
             width: 100%;
-            height: 100%;
+            height:800px !important;
             background: #eee;
             margin: 80px auto 43px;
             position: relative;

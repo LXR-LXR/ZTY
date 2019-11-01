@@ -72,7 +72,10 @@
                     <div id="hot-goal">
                         <p>热门目的地</p>
                             <div id="hot-goal-item">
-                                <img src="../../../static/goal-img/beijing5.gif" alt=""> 
+                                <router-link to=''>
+                                    <img src="../../../static/goal-img/beijing5.gif" alt=""> 
+                                </router-link>
+                                
                                 故宫
                             </div>
                             <div id="hot-goal-item">
@@ -375,8 +378,8 @@
 export default {
     data(){
         return{
-            active:"tab2",
-	        LocationCity:"正在定位",
+            active:"tab1",
+            LocationCity:"正在定位",
         }
     },
     // 定位开始
@@ -385,18 +388,24 @@ export default {
     },
     // 点击切换面板事件
     methods:{
-	city(){    //定义获取城市方法
+        city(){    //定义获取城市方法
             const geolocation = new BMap.Geolocation();
             var _this = this
+            let city
             geolocation.getCurrentPosition(function getinfo(position){
-                let city = position.address.city;             //获取城市信息
+                city = position.address.city;             //获取城市信息 
                 let province = position.address.province;    //获取省份信息
                 _this.LocationCity = city
+                _this.$emit('paramsChange',city);   
+                
             }, function(e) {
                 _this.LocationCity = "定位失败"
             }, 
-            {provider: 'baidu'});        
+                {provider: 'baidu'});  
+            
+             
         },
+            
         // 定位结束
         btn1(){
             this.active="tab1"

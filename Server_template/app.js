@@ -18,11 +18,11 @@ server.listen(5050);
 
 //3:创建数据库连接池(池 提高效率)
 var pool = mysql.createPool({
-    host:"127.0.0.1", //数据库地址
-    user:"root",      //数据库用户名
-    password:"",      //数据库密码
+    host:"w.rdc.sae.sina.com.cn", //数据库地址
+    user:"15zj54342n",      //数据库用户名
+    password:"x5yzhz53hwm4khi0zliy5m153yzm03miwj4kh2h0",      //数据库密码
     port:3306,      //数据库端口
-    database:"zty",//库名
+    database:"app_ranxiaomozty",//库名
     connectionLimit:15//15连接
 })
 //4:配置跨域模块
@@ -31,7 +31,7 @@ var pool = mysql.createPool({
 //  服务器:4000 你
 server.use(cors({
   //允许程序列表  教授架
-  origin:["http://127.0.0.1:8080","http://localhost:8080"],
+  origin:["http://127.0.0.1:8080","http://localhost:8080","http://127.0.0.1:4000",'https://ranm.applinzi.com','http://ranm.applinzi.com','https://www.tuling123.com/openapi/api'],  /**/
   credentials:true//每次请求需要验证
 }))
 //5:配置session模块?????????
@@ -73,6 +73,17 @@ pool.query(sql,[uname,upwd],(err,result)=>{
  }
  //(6)将结果返回脚手架
 })
+})
+
+
+//查询指定用户名
+server.get('/finduser',(req,res)=>{
+  var uid=req.query.uid;
+  var sql="SELECT uname FROM zty_user WHERE uid=?"
+  pool.query(sql,[uid],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,msg:"查询成功",data:result})
+  })
 })
 
 
@@ -132,14 +143,14 @@ var pno = req.query.pno;
 var ps = req.query.pageSize;
 //3:设置默认值 pno=1 pageSize=4
 if(!pno){pno=1}
-if(!ps){ps=4}
+if(!ps){ps=2}
 //4:计算第一问号值 LIMIT ?(从几开始(pno-1)*pageSize),?(查询几行-页大小)
 var off = (pno-1)*ps;
 //5:对pageSize转int
 ps = parseInt(ps); 
 //6:创建sql语句
 //自己写:库名;表名;列名 小写
-var sql = "SELECT pid,price,title,pic,href ,subtitle FROM zty_index_product LIMIT ?,?";
+var sql = "SELECT * FROM zty_index_product LIMIT ?,?";
 //7:执行sql语句
 pool.query(sql,[off,ps],(err,result)=>{
   if(err){throw err}else{
@@ -221,6 +232,10 @@ server.get("/addcart",(req,res)=>{
     console.log(result)
     if(result.affectedRows>0)
     {
+      var sql = "INSERT INTO zty_order VALUES(?,?,?,?,?,?,?,?,?)";
+      pool.query(sql,[null,uid,uname,phone,price,1,adult,children,organize],(err,result)=>{
+        if(err) throw err;
+      })
       res.send({code:1,msg:"添加成功",data:result})
     }
     
@@ -237,8 +252,47 @@ server.get("/addcart",(req,res)=>{
 
 //http://127.0.0.1:4000/addcart?lid=1&lname=mac&price=9
 
+server.get('/updateOrder',(req,res)=>{
+  // 1.获取当前用户uid
+  var uid=req.session.uid;
+  var status=req.query.status;
+  // 2.如果没有uid  提示
+  if(!uid){
+      res.send({code:-1,msg:"请登录"});
+      return;
+  }
+  var sql='UPDATE zty_order SET status=? WHERE user_id=?'
+  pool.query(sql,[status,uid],(err,result)=>{
+    if(err) throw err;
+  })
+})
 
-
+//查询状态购物车
+server.get('/findOrder',(req,res)=>{
+  // 1.获取当前用户uid
+  var uid=req.session.uid;
+  var status=req.query.status;
+  console.log(uid,status)
+  // 2.如果没有uid  提示
+  if(!uid){
+      res.send({code:-1,msg:"请登录"});
+      return;
+  }
+  if(status>=1){
+    var sql='SELECT * FROM zty_order WHERE status=? AND user_id=?'
+    pool.query(sql,[status,uid],(err,result)=>{
+      if(err) throw err;
+      res.send({code:1,msg:'查询成功',data:result});
+    })
+  }
+  else{
+    var sql='SELECT * FROM zty_order WHERE user_id=?'
+    pool.query(sql,[uid],(err,result)=>{
+      if(err) throw err;
+      res.send({code:1,msg:'查询成功',data:result});
+    })
+  }
+})
 
 
 
@@ -252,7 +306,7 @@ server.get("/findcart",(req,res)=>{
         return;
     }
     // 3.创建sql  查询购物车
-    var sql = "SELECT id,lid,lname,price,count FROM  zty_cart WHERE uid = ?";
+    var sql = "SELECT * FROM  zty_cart WHERE uid = ?";
     // 4.执行sql并且将结果返回
     pool.query(sql,[uid],(err,result)=>{
         if(err) throw err;
@@ -348,6 +402,51 @@ server.get('/uid',(req,res)=>{
 
 })
 
+
+
+// 短信验证码 开始
+server.get("/registe", (req, res) => {
+  var obj = req.query
+  var phone = obj.phone;
+  var ccode = obj.ccode;
+  console.log(phone)
+  console.log(ccode)
+  // hxx补充手机号注册
+  var sql = "SELECT uid FROM zty_user WHERE phone = ?";
+  pool.query(sql, [phone], (err, result) => {
+  if (err) throw err;
+  if (result.length > 0) {
+  res.send({ code: 1, msg: "手机号已存在" });
+  } 
+  })
+  // / 短信验证对接第三方api
+  //node request模块安装命令：npm install request
+  var request = require('request');
+  var querystring = require('querystring');
+  var queryData = querystring.stringify({
+  "mobile": phone, // 接受短信的用户手机号码
+  "tpl_id": "194438", // 您申请的短信模板ID，根据实际情况修改
+  "tpl_value": `#code#=${ccode}`, // 您设置的模板变量，根据实际情况修改
+  "key": "1a0696ace63971fc23d254e5dff22d4a", // 应用APPKEY(应用详细页查询)
+  });
+  
+  
+  var queryUrl = 'http://v.juhe.cn/sms/send?' + queryData;
+  
+  
+  request(queryUrl, function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+  console.log(body) // 打印接口返回内容
+  
+  var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容
+  console.log(jsonObj)
+  } else {
+  console.log('请求异常');
+  }
+  })
+})
+  // 短信验证结尾
+  // hxx补充
 //(1)mysql 查询 207~227复制
 //select id from xz_cart;
 //http://127.0.0.1:4000/delm?id=12,15

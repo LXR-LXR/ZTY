@@ -1,7 +1,9 @@
 <template>
     <div id="container">
        <div class="page-head">
-            <img src="../../../static/img/gengduo.png" alt="" class="left-img">
+            <router-link :to="/home/+uid+'/'+uid1">
+                <img src="../../../static/img/fanhui.png" alt="" class="left-img">
+            </router-link>
             <div class="right-head">
             <div class="searchdiv">
                 <img src="../../../static/img/fenxiangmingpian.png" style="width:25px;" />
@@ -14,13 +16,13 @@
         <div id="mt-swap" v-for='(item1,item) of list' :key='item.i'>
             <mt-swipe :auto="4000" class="mt-swipe" :show-indicators="false">
                 <mt-swipe-item>
-                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban1"  alt="">
+                    <img :src="'https://ranxiaomozty.applinzi.com/'+item1.p_ban1"  alt="">
                 </mt-swipe-item>
                 <mt-swipe-item>
-                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban2" alt="">
+                    <img :src="'https://ranxiaomozty.applinzi.com/'+item1.p_ban2" alt="">
                 </mt-swipe-item>
                 <mt-swipe-item>
-                    <img :src="'https://ztyranxiaomo.applinzi.com/'+item1.p_ban3" alt="">
+                    <img :src="'https://ranxiaomozty.applinzi.com/'+item1.p_ban3" alt="">
                 </mt-swipe-item>
             </mt-swipe>
         </div>
@@ -84,7 +86,7 @@
                              <div class="desc">{{item.details}} </div>
                              <div class="line"></div>
                              <h4>景点介绍</h4>
-                      <img :src="'https://ztyranxiaomo.applinzi.com/'+item.p_img"  />
+                      <img :src="'https://ranxiaomozty.applinzi.com/'+item.p_img"  />
                 
                    </div>
                      </div>
@@ -125,11 +127,12 @@
 <script>
 export default {
     data(){
-        return{
+        return {
             selected:"tab1",
             click:false,
             // 数据库返回的数据
             list:[],
+            uid1:'tab1'
         }
     },
     // 组件传参
@@ -143,10 +146,7 @@ export default {
     var obj={lid:this.lid}
      this.axios.get(url,{params:obj}).then(res=>{
          console.log('这是ajax返回的res666');
-                console.log(res);
                 this.list=res.data.data;
-                console.log('这是商品详情list');
-                console.log(this.list)
                 if(res.data.code==-1){
             // 6.如果没有登录提示
                 // this.$toast("请登录");
@@ -163,8 +163,7 @@ export default {
             }
             else
             {
-                console.log(11111111111);
-                this.$router.push(/order/+this.lid+'/'+this.uid);
+                this.$router.push(/Order/+this.lid+'/'+this.uid);
             }
         },
         img(){

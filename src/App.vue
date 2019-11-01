@@ -11,15 +11,13 @@ export default {
 }
 </script>
 
-<style>     
-
-
+<style>
     /* 清除 默认样式 */
     /* @charset "utf-8"; */
 
 /* 禁用iPhone中Safari的字号自动调整 */
 html {
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;  
     -ms-text-size-adjust: 100%;
     /* 解决IOS默认滑动很卡的情况 */
     -webkit-overflow-scrolling : touch;

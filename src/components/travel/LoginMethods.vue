@@ -1,12 +1,12 @@
 <template>
 <div>
   <div id="fanhui" >
-      <router-link to="/" :uid1="uid1">返回</router-link> 
+      <router-link :to="'/home/'+undefined+'/'+uid1">返回</router-link> 
   </div>
   <div id="parent">
     <!-- logo -->
     
-    <h4>憨憨账号登录</h4>
+    <h4>账号登录</h4>
     <div class="input">
         <!--用户名输入框-->
         <input type="text" autofocus placeholder="用户名"  v-model="uname"><br>
@@ -27,7 +27,7 @@
         </div>
         <!-- 去注册 -->
         <div class="torg" >
-            <router-link class="forget" to='/userReg'>还没账号？去注册<img src="../../../static/my_login/jiantou.png" style="width:10px; height:10px" ></router-link>
+            <router-link class="forget" to='/UserReg'>还没账号？去注册<img src="../../../static/my_login/jiantou.png" style="width:10px; height:10px" ></router-link>
         </div>
     </div>
     <!-- 微信其他方式登录 -->
@@ -38,7 +38,7 @@
         <img src="../../../static/my_login/qq.png" alt="" >
     </div>
     <footer>
-        <div class="foot">登录/即代表同意<a href=""> 臭泽泽用户使用协议</a></div>
+        <div class="foot">登录/注册即代表同意<a href="">On My Way用户使用协议</a></div>
     </footer>
   </div>
   </div>
@@ -63,7 +63,6 @@ export default {
      var reg = /^[a-z0-9]{3,12}$/i;
      //4:验证用户名
      if(reg.test(u)==false){
-      console.log("2:");
       //5:验证不成功 提示消息
       this.$messagebox("用户名格式不正确");
       return;
@@ -81,18 +80,15 @@ var obj={uname:u,upwd:p};
     url,
     {params:obj}
 ).then(res=>{
-    console.log(res);
     //9:获取服务器返回结果
      //10:登录失败提示消息
      //11:登录成功跳转 /Product
-       console.log(res.data.code);
        if(res.data.code<0){
        this.$messagebox('消息','用户名和密码错误');
        }else{
         //跳转Prodect组件 
         this.$messagebox('登录成功');
-        console.log(res.data.data)
-        this.$router.push('/home/'+res.data.data);
+        this.$router.push('/home/'+res.data.data+'/'+'tab1');
        }
 
 

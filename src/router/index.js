@@ -19,7 +19,7 @@ import Tuijian from '@/components/travel/Tuijian'
 import Love from '@/components/travel/Love'
 import Pay from '@/components/travel/Pay'
 import Successful from '@/components/travel/Successful'
-
+import phoneReg from '@/components/travel/phoneReg'
 
 Vue.use(Router)
 
@@ -27,10 +27,10 @@ export default new Router({
   routes: [
    {path: '/loginDetail',component: LoginDetail},
    {path: '/love',component: Love},
-   {path: '/tuijian/:tid',component: Tuijian,props:true},
-   {path: '/order/:lid/:uid',component: Order,props:true},
+   {path: '/tuijian/:tid/:uid',component: Tuijian,props:true},
+   {path: '/Order/:lid/:uid',component: Order,props:true},
    {path: '/orderList',component: OrderList},
-    {path: '/myOrder/:val',component: MyOrder,props:true},
+    {path: '/myOrder/:val/:i/:uid',component: MyOrder,props:true},
     {path: '/myCart',component: MyCart},
     {path: '/userReg',component: UserReg},
     {path: '/loginMethods',component: LoginMethods},
@@ -40,8 +40,10 @@ export default new Router({
     {path: '/travel',component: Travel},
     {path: '/Detail/:lid/:uid',component: Detail,props:true},
     {path: '/',component: Home},
-    {path: '/home/:uid',component: Home,props:true},
-    {path: '/Pay/:uid',component: Pay,props:true},
-    {path: '/Successful',component: Successful}
+    {path: '/home/:uid/:uid1',component: Home,props:true},
+    {path: '/Pay/:lid/:uid',component: Pay,props:true},
+    {path: '/Successful/:uid',component: Successful,props:true},
+    {path: '/phone',component: phoneReg}
+
   ]
 })

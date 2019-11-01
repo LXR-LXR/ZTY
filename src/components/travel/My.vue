@@ -28,15 +28,14 @@
 import MyCart from './MyCart'
 import MyLoginHeader from './MyloginHeader'
 export default {
-    data:{
-        return (){
+    data(){
+        return {
 
         }
     },
     components:{'mycart':MyCart,'myloginheader':MyLoginHeader},
     props:["uid"],
     created(){
-        console.log(this.uid)
     }
 }
 </script>

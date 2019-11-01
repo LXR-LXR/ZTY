@@ -1,32 +1,37 @@
 <template>
     <div class="container1">
+        
         <!-- s搜索框 -->
-        <div> 
-               <router-link to="" slot="left">
-        <mt-button icon="back" @click="$router.back(-1)"></mt-button>
-      </router-link>
-             <mt-search v-model="value" cancel-text="取消" placeholder="搜索" fixed></mt-search>
+        <div id="header"> 
+            <!-- <span>返回</span>
+            <router-link to="" slot="left">
+                <mt-button icon="back" @click="$router.back(-1)"></mt-button>
+            </router-link> -->
+            <mt-search v-model="value" cancel-text="取消" placeholder="搜索" fixed>
+            </mt-search>
         </div>
       
         <!-- navbar 导航 -->
-  <mt-navbar v-model="selected" >
-  <mt-tab-item id="1">推荐</mt-tab-item>
-  <mt-tab-item id="2">当地玩乐</mt-tab-item>
-  <mt-tab-item id="3">邮轮游</mt-tab-item>
-  <mt-tab-item id="4">精品小团</mt-tab-item>
-  <mt-tab-item id="5">个性定制</mt-tab-item>
-</mt-navbar>
-
-<!-- tab-container 面板 -->
-<mt-tab-container v-model="selected">
- <mt-tab-container-item id="1" @click="getTid(tid)">
-               <div class="hot_sell">
+        
+            <mt-navbar v-model="selected" >
+                <mt-tab-item id="1" @click.native="getTid(1)">推荐</mt-tab-item>
+                <mt-tab-item id="2" @click.native="getTid(2)">当地玩乐</mt-tab-item>
+                <mt-tab-item id="3" @click.native="getTid(3)">邮轮游</mt-tab-item>
+                <mt-tab-item id="4" @click.native="getTid(4)">精品小团</mt-tab-item>
+                <mt-tab-item id="5" @click.native="getTid(5)">个性定制</mt-tab-item>
+            </mt-navbar>
+            <div id="diandi">
+            </div>
+        <!-- tab-container 面板 -->
+        <mt-tab-container v-model="selected">
+        <mt-tab-container-item id="1">
+               <div class="hot_sell" >
                        <div v-for='(item,i) of list' :key='i' class="every">
                             <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -44,14 +49,14 @@
                        </div>
                     </div>
   </mt-tab-container-item>
-   <mt-tab-container-item id="2"  @click="getTid(tid)">
+   <mt-tab-container-item id="2">
   <div class="hot_sell">
-                       <div v-for='(item,i) of other' :key='i' class="every">
+                       <div v-for='(item,i) of list' :key='i' class="every">
                             <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -69,13 +74,13 @@
                        </div>
                     </div>
   </mt-tab-container-item>
-  <mt-tab-container-item id="3" @click="getTid(tid)" >
-       <div v-for='(item,i) of other1' :key='i' class="every">
+  <mt-tab-container-item id="3">
+       <div v-for='(item,i) of list' :key='i' class="every">
                             <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -93,13 +98,13 @@
                        </div>
 
   </mt-tab-container-item>
-   <mt-tab-container-item id="4"  @click="getTid(tid)">
-        <div v-for='(item,i) of other2' :key='i' class="every">
+   <mt-tab-container-item id="4">
+        <div v-for='(item,i) of list' :key='i' class="every">
                             <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -117,13 +122,13 @@
                        </div>
 
   </mt-tab-container-item>
-   <mt-tab-container-item id="5"  @click="getTid(tid)">
-        <div v-for='(item,i) of other3' :key='i' class="every">
+   <mt-tab-container-item id="5">
+        <div v-for='(item,i) of list' :key='i' class="every">
                             <!-- <router-link :to="/Detail/+item.href" class="aaa">  -->
                                 <div class="hot_pic">
                                   
                                     <router-link :to="/Detail/+item.href" class="aaa">
-                                       <img :src="'https://ztyranxiaomo.applinzi.com/'+item.pic">
+                                       <img :src="'https://ranxiaomozty.applinzi.com/'+item.pic">
                                    </router-link>
                                 </div>
                                 <div class="hot_box">
@@ -152,15 +157,10 @@ export default {
             value:'',
             selected:'1',
             list:[],  //商品列表数组
-            pno:0 ,    //页码（第几页）
             // show:false
-            other:[],
-            other1:[],
-            other2:[],
-            other3:[]
         }
     },
-      props:["tid"], //{ ..., props:true}
+      props:["tid","uid"], //{ ..., props:true}
       // 页面加载中调用ajax请求
     created() {
         this.loadMore();
@@ -170,34 +170,34 @@ export default {
         
     },
     methods:{
-       getTid(tid){
-          var selected;
-				this.selected=this.$route.params.tid;
-				return selected;
-				console.log(selected);
-       },
+        getTid(i){
+            // 1.创建url
+            var url="product";
+            // 2.创建obj参数
+            var pno=i
+            var obj={pno:pno};
+            // 3.发送axios请求
+            this.axios.get(url,{params:obj}).then(res=>{
+                // res中有响应结果码 还有data code；1 data返回结果集 四个商品[{},{},]
+                // 4.接收返回结果并且显示
+                // this.list = res.data.data;
+                // 拼接上一页和下一页的数组  concat
+                this.list=res.data.data;  
+            }) 
+        },
             loadMore(){     // 加载更多
             // 1.创建url
             var url="product";
             // 2.创建obj参数
-            this.pno++;
-            var obj={pno:this.pno};
+            var pno=this.tid
+            var obj={pno:pno};
             // 3.发送axios请求
             this.axios.get(url,{params:obj}).then(res=>{
             // res中有响应结果码 还有data code；1 data返回结果集 四个商品[{},{},]
-            console.log('这是ajax返回的res');
-            console.log(res);
             // 4.接收返回结果并且显示
             // this.list = res.data.data;
             // 拼接上一页和下一页的数组  concat
-            var rows=this.list.concat(res.data.data);
-            this.list=rows;  
-                   this.other=this.list.slice(2,6)
-                   this.other1=this.list.slice(3,6)
-                   this.other2=this.list.slice(4,6)
-                   this.other3=this.list.slice(5,6)
-            console.log('这是this.list')
-            console.log(this.list)
+            this.list=res.data.data;  
           
             }) 
         },
@@ -226,7 +226,9 @@ export default {
 }
 </script>
 <style scoped>
-
+#diandi{
+    height:46px;
+}
 .mint-navbar {
   width:100%;
 /* background: #ccc; */

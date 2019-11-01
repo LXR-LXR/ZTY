@@ -5,7 +5,7 @@
 			<!-- 声明数组cartText,利用v-for自动生成cart -->
 			<li id="cartItem" v-for="(item,i) of cartText" :key="i">
 				<!-- 为空的div标签绑定函数throwValue用来向跳转页面并传递val值 -->
-				<router-link :to="/MyOrder/+item.val">
+				<router-link :to="/MyOrder/+item.val+'/'+i+'/'+uid">
 					<!-- 将src修改为变量，通过数组cartText保存其对应的路径 -->
 					<img :src="item.icon" id="cartIcon">
 					<!-- 通过数组cartText动态加载p标签内的内容 -->
@@ -26,7 +26,9 @@
 		          {icon:require("../../../static/myimg/mycart/comment.png"),title:"待评价",val:"comment"}
 	        	]
 			}
+			
 		},
+		props:["uid"]
 	}
 </script>
 <style>

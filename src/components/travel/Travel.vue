@@ -52,7 +52,6 @@ export default {
                     },
                     // contentType:'application/json',
                     success: (data) => {
-                         console.log(data);
                         this.messageList.push({
                             message: data.text,
                             myself: false
@@ -79,7 +78,7 @@ export default {
                 //         info: this.inputValue
                 //     };
                $.ajax({
-                    url: 'http://www.tuling123.com/openapi/api',
+                    url: 'https://www.tuling123.com/openapi/api',
                     type: 'post',
                     data: {
                         key: '38f61c4bee2842f49d35b87216f7a217',
@@ -87,7 +86,6 @@ export default {
                     },
                     // contentType:'application/json',
                     success: (data) => {
-                         console.log(data);
                         this.messageList.push({
                             message: data.text,
                             myself: false
